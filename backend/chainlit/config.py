@@ -281,9 +281,7 @@ class CodeSettings:
     on_chat_resume: Optional[Callable[["ThreadDict"], Any]] = None
     on_message: Optional[Callable[["Message"], Any]] = None
 
-    on_window_message: Optional[Callable[[str], Any]] = (
-        None  # TODO: Change the type to something custom?
-    )
+    on_window_message: Optional[Callable[[str], Any]] = None  # TODO: Change the type to something custom?
 
     on_audio_chunk: Optional[Callable[["AudioChunk"], Any]] = None
     on_audio_end: Optional[Callable[[List["ElementBased"]], Any]] = None
