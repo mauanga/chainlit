@@ -91,7 +91,9 @@ const useChatInteract = () => {
   );
 
   const windowMessage = useCallback(
-    (data: object) => {
+    (data: any) => {
+      console.log('in');
+      console.log(data);
       session?.socket.emit('window_message', data);
     },
     [session?.socket]

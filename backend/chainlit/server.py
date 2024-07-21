@@ -172,6 +172,7 @@ copilot_build_dir = get_build_dir(os.path.join("libs", "copilot"), "copilot")
 app = FastAPI(lifespan=lifespan)
 
 sio = socketio.AsyncServer(
+    logger=True,
     cors_allowed_origins=[] if IS_SUBMOUNT else "*", async_mode="asgi"
 )
 

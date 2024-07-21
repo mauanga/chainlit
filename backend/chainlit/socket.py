@@ -322,7 +322,7 @@ async def window_message(sid, data):
     init_ws_context(session)
 
     if config.code.on_window_message:
-        await config.code.on_window_message(data)()
+        await config.code.on_window_message(data)
 
 
 @sio.on("audio_chunk")

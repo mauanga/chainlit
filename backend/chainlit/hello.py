@@ -5,7 +5,7 @@ from chainlit import AskUserMessage, Message, on_chat_start, on_window_message
 
 @on_window_message
 async def window_message(data):
-    await Message(content="recieved data!").send()
+    await Message(content=f"received data: {data}").send()
 
 
 @on_chat_start

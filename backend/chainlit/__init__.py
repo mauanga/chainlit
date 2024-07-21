@@ -170,7 +170,7 @@ def on_message(func: Callable) -> Callable:
 
 
 @trace
-def on_window_message(func: Callable) -> Callable:
+def on_window_message(func: Callable[[str], any]) -> Callable:
     """
     Hook to react to javascript postMessage events coming from the UI.
 
@@ -180,7 +180,8 @@ def on_window_message(func: Callable) -> Callable:
     Returns:
 
     """
-    config.code.set_chat_profiles = wrap_user_function(func)
+    logger.info("we made it")
+    config.code.on_window_message = wrap_user_function(func)
     return func
 
 

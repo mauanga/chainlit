@@ -9,6 +9,8 @@ import {
   useChatInteract,
   useConfig
 } from '@chainlit/react-client';
+import debug from './assets/debug';
+import Messages from './components/organisms/chat/Messages';
 
 export default function AppWrapper() {
   const { isAuthenticated, isReady } = useAuth();
@@ -40,10 +42,13 @@ export default function AppWrapper() {
   }, [translations]);
 
   useEffect(() => {
-    window.addEventListener('message', (event) => {
+    // debugger;
+    const handleWindowMessage = (event: MessageEvent) => {
       windowMessage(event.data);
-    });
-  }, []);
+    }
+    window.addEventListener('message', handleWindowMessage);
+    return () => window.removeEventListener('message', handleWindowMessage);
+  }, [windowMessage]);
 
   if (!isReady) {
     return null;
