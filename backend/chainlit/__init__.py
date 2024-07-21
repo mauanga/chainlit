@@ -170,6 +170,21 @@ def on_message(func: Callable) -> Callable:
 
 
 @trace
+def on_window_message(func: Callable) -> Callable:
+    """
+    Hook to react to javascript postMessage events coming from the UI.
+
+    Args:
+        func:
+
+    Returns:
+
+    """
+    config.code.set_chat_profiles = wrap_user_function(func)
+    return func
+
+
+@trace
 def on_chat_start(func: Callable) -> Callable:
     """
     Hook to react to the user websocket connection event.

@@ -3,12 +3,18 @@ import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import getRouterBasename from 'utils/router';
 
-import { useApi, useAuth, useConfig } from '@chainlit/react-client';
+import {
+  useApi,
+  useAuth,
+  useChatInteract,
+  useConfig
+} from '@chainlit/react-client';
 
 export default function AppWrapper() {
   const { isAuthenticated, isReady } = useAuth();
   const { language: languageInUse } = useConfig();
   const { i18n } = useTranslation();
+  const { windowMessage } = useChatInteract();
 
   function handleChangeLanguage(languageBundle: any): void {
     i18n.addResourceBundle(languageInUse, 'translation', languageBundle);
@@ -32,6 +38,12 @@ export default function AppWrapper() {
     if (!translations) return;
     handleChangeLanguage(translations.translation);
   }, [translations]);
+
+  useEffect(() => {
+    window.addEventListener('message', (event) => {
+      windowMessage(event.data);
+    });
+  }, []);
 
   if (!isReady) {
     return null;

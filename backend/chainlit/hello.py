@@ -1,6 +1,11 @@
 # This is a simple example of a chainlit app.
 
-from chainlit import AskUserMessage, Message, on_chat_start
+from chainlit import AskUserMessage, Message, on_chat_start, on_window_message
+
+
+@on_window_message
+async def window_message(data):
+    await Message(content="recieved data!").send()
 
 
 @on_chat_start
