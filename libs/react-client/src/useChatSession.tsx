@@ -1,5 +1,7 @@
 import { debounce } from 'lodash';
 import { useCallback, useContext, useEffect } from 'react';
+import React from 'react';
+import ReactMarkdown from 'react-markdown';
 import {
   useRecoilState,
   useRecoilValue,
@@ -439,21 +441,23 @@ const useChatSession = () => {
           return;
         }
 
+        const message = <ReactMarkdown children={data.message} />;
+
         switch (data.type) {
           case 'info':
-            toast.info(data.message);
+            toast.info(message);
             break;
           case 'error':
-            toast.error(data.message);
+            toast.error(message);
             break;
           case 'success':
-            toast.success(data.message);
+            toast.success(message);
             break;
           case 'warning':
-            toast.warning(data.message);
+            toast.warning(message);
             break;
           default:
-            toast(data.message);
+            toast(message);
             break;
         }
       });
